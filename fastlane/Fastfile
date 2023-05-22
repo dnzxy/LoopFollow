@@ -23,6 +23,10 @@ DEVICE_NAME = ENV["DEVICE_NAME"]
 DEVICE_ID = ENV["DEVICE_ID"]
 ENV["FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT"] = "120"
 
+APP_SCHEME = ENV["APP_SCHEME"]
+APP_ID = ENV["APP_ID"]
+CONFIGURATION = ENV["CONFIGURATION"]
+
 platform :ios do
   desc "Build Loop Follow"
   lane :build_LoopFollow do
@@ -40,7 +44,7 @@ platform :ios do
     )
 
     previous_build_number = latest_testflight_build_number(
-      app_identifier: "com.#{TEAMID}.LoopFollow",
+      app_identifier: "com.#{TEAMID}.#{APP_ID}.LoopFollow",
       api_key: api_key,
     )
 
@@ -55,12 +59,12 @@ platform :ios do
       type: "appstore",
       git_basic_authorization: Base64.strict_encode64("#{GITHUB_REPOSITORY_OWNER}:#{GH_PAT}"),
       app_identifier: [
-        "com.#{TEAMID}.LoopFollow"
+        "com.#{TEAMID}.#{APP_ID}.LoopFollow"
       ]
     )
 
     previous_build_number = latest_testflight_build_number(
-      app_identifier: "com.#{TEAMID}.LoopFollow",
+      app_identifier: "com.#{TEAMID}.#{APP_ID}.LoopFollow",
       api_key: api_key,
     )
 
@@ -77,16 +81,16 @@ platform :ios do
 
     update_code_signing_settings(
       path: "#{GITHUB_WORKSPACE}/LoopFollow.xcodeproj",
-      profile_name: mapping["com.#{TEAMID}.LoopFollow"],
+      profile_name: mapping["com.#{TEAMID}.#{APP_ID}.LoopFollow"],
       code_sign_identity: "iPhone Distribution",
       targets: ["LoopFollow"]
     )
 
     gym(
       export_method: "app-store",
-      scheme: "LoopFollow",
-      output_name: "LoopFollow.ipa",
-      configuration: "Release",
+      scheme: "#{APP_SCHEME}",
+      output_name: "#{APP_SCHEME}.ipa",
+      configuration: "#{CONFIGURATION}",
       destination: 'generic/platform=iOS',
       buildlog_path: 'buildlog'
     )
@@ -108,7 +112,7 @@ platform :ios do
     upload_to_testflight(
       api_key: api_key,
       skip_submission: false,
-      ipa: "LoopFollow.ipa",
+      ipa: "#{APP_SCHEME}.ipa",
       skip_waiting_for_build_processing: true,
     )
   end
@@ -134,6 +138,12 @@ platform :ios do
     configure_bundle_id("LoopFollow", "com.#{TEAMID}.LoopFollow", [
     ])
     
+    configure_bundle_id("LoopFollow", "com.#{TEAMID}.child1.LoopFollow", [
+    ])
+    
+    configure_bundle_id("LoopFollow", "com.#{TEAMID}.child2.LoopFollow", [
+    ])
+    
   end
 
   desc "Provision Certificates"
@@ -153,6 +163,8 @@ platform :ios do
       git_basic_authorization: Base64.strict_encode64("#{GITHUB_REPOSITORY_OWNER}:#{GH_PAT}"),
       app_identifier: [
         "com.#{TEAMID}.LoopFollow",
+        "com.#{TEAMID}.child1.LoopFollow",
+        "com.#{TEAMID}.child2.LoopFollow",
       ]
     )
   end
