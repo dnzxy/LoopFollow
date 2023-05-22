@@ -1,5 +1,5 @@
-name: 4. Build Loop Follow
-run-name: Build Loop Follow
+name: 4. Build Loop Follow for 2 Children
+run-name: Build Loop Follow for 2 Children  (${{ github.ref_name }})
 on:
   workflow_dispatch:
 
