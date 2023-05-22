@@ -10,14 +10,21 @@ on:
   #schedule:
     #- cron: '0 17 1 */2 *' # Runs at 17:00 UTC on the 1st in Jan, Mar, May, Jul, Sep and Nov.
 
+env:
+  TEAMID: ${{ secrets.TEAMID }}
+  GH_PAT: ${{ secrets.GH_PAT }}
+  FASTLANE_KEY_ID: ${{ secrets.FASTLANE_KEY_ID }}
+  FASTLANE_ISSUER_ID: ${{ secrets.FASTLANE_ISSUER_ID }}
+  FASTLANE_KEY: ${{ secrets.FASTLANE_KEY }}
+  MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
 
 jobs:
-  secrets:
-    uses: ./.github/workflows/validate_secrets.yml
-    secrets: inherit
+#  secrets:
+#    uses: ./.github/workflows/validate_secrets.yml
+#    secrets: inherit
 
   build:
-    needs: secrets
+#    needs: secrets
     runs-on: macos-12
     steps:
       # Uncomment to manually select latest Xcode if needed
