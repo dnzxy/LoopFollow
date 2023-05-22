@@ -138,10 +138,10 @@ platform :ios do
     configure_bundle_id("LoopFollow", "com.#{TEAMID}.LoopFollow", [
     ])
     
-    configure_bundle_id("LoopFollow", "com.#{TEAMID}.child1.LoopFollow", [
+    configure_bundle_id("LoopFollow", "com.#{TEAMID}.loopfollowChild1.LoopFollow", [
     ])
     
-    configure_bundle_id("LoopFollow", "com.#{TEAMID}.child2.LoopFollow", [
+    configure_bundle_id("LoopFollow", "com.#{TEAMID}.loopfollowChild2.LoopFollow", [
     ])
     
   end
@@ -163,8 +163,8 @@ platform :ios do
       git_basic_authorization: Base64.strict_encode64("#{GITHUB_REPOSITORY_OWNER}:#{GH_PAT}"),
       app_identifier: [
         "com.#{TEAMID}.LoopFollow",
-        "com.#{TEAMID}.child1.LoopFollow",
-        "com.#{TEAMID}.child2.LoopFollow",
+        "com.#{TEAMID}.loopfollowChild1.LoopFollow",
+        "com.#{TEAMID}.loopfollowChild2.LoopFollow",
       ]
     )
   end
