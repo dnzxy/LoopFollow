@@ -1,0 +1,3 @@
+#include? "../../LoopFollowConfigOverride.xcconfig"
+
+unique_id = ${DEVELOPMENT_TEAM}.loopfollowChild1
