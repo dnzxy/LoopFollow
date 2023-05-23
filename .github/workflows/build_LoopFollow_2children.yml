@@ -47,7 +47,7 @@ jobs:
         env:
           APP_SCHEME: "loopfollowChild1"
           APP_ID: "loopfollowChild1"
-          CONFIGURATION: "Debug" # "Debug" or "Release"
+          CONFIGURATION: "loopfollowChild1" # "Debug" or "Release"
       
       # Upload Loop Follow for child 1 to TestFlight
       - name: Fastlane upload to TestFlight
@@ -61,7 +61,7 @@ jobs:
         env:
           APP_SCHEME: "loopfollowChild2"
           APP_ID: "loopfollowChild2"
-          CONFIGURATION: "Debug" # "Debug" or "Release"
+          CONFIGURATION: "loopfollowChild2" # "Debug" or "Release"
       
       # Upload Loop Follow for child 2 to TestFlight
       - name: Fastlane upload to TestFlight
