@@ -1,0 +1,10 @@
+#include? "../../LoopFollowConfigOverride.xcconfig"
+
+//
+//  loopfollowChild1.xcconfig
+//
+//  Created by Deniz Cengiz Stack on 05/23/23.
+//  Copyright © 2023 LoopKit Authors. All rights reserved.
+//
+
+unique_id = ${DEVELOPMENT_TEAM}.loopfollowChild1
